@@ -1,3 +1,17 @@
+package com.prac.jpa;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import com.prac.jpa.entity.Users;
+import com.prac.jpa.repository.UserRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
 @DataJpaTest
 @Slf4j
 public class JpaPjtApplicationTests {
@@ -31,7 +45,7 @@ public class JpaPjtApplicationTests {
         @Test
         void findAllTest() {
             List<Users> userList = userRepository.findAll();
-            for(Users u : userList) log.info("[FindAll] : " + u.getID() + " | " + u.getUserName());
+            for(Users u : userList) log.info("[FindAll] : " + u.getID() + " | " + u.getUsername());
         }
 
         @Test

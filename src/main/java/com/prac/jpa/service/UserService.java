@@ -1,3 +1,14 @@
+package com.prac.jpa.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.prac.jpa.entity.Users;
+import com.prac.jpa.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
