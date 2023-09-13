@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.jpa.entity.Users;
+import com.prac.jpa.repository.UserRepository;
 import com.prac.jpa.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,15 +17,40 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
     
-    @GetMapping(value = "/users")
-    public List<Users> getUsers( @RequestParam(required = false, defaultValue = "") String name ){
-        return userService.getUsersService( name );
-    }
-
-    @PostMapping(value = "/user")
+    private final UserRepository userRepository;
+    
+    @PostMapping(value = "/createUser")
     public String createUser(@RequestBody Users user){
         return userService.createUserService(user);
+    }
+
+    @GetMapping(value = "/getUser")
+    public List<Users> getUser( @RequestParam(required = false, defaultValue = "") String name ){
+        return userService.getUserService( name );
+    }
+
+    @GetMapping(value = "/updateUsers")
+    public List<Users> updateUsers( @RequestParam(required = false, defaultValue = "") String name ){
+        if(userRepository.findById(name).isEmpty()) { // 값 존재여부 확인
+            return "입력한 " + name + "이 존재하지 않습니다";
+        } else {
+            userRepository.save(CrudEntity.builder().name(name).build());
+            return name + "의 나이를 " + age + "로 변경 완료";
+        }
+        return userService.updateUsersService( name );
+    }
+
+    @PostMapping(value = "/deleteUser")
+    public String deleteUser(@RequestBody Users user, @RequestParam(value = "name") String name){
+        if(userRepository.findById(name).isEmpty()) { // 값 존재여부 확인
+            return "입력한 " + name + "이 존재하지 않습니다";
+        } else {
+            userRepository.delete(CrudEntity entity = CrudEntity.builder().name(name).build());
+            return name + " 삭제 완료";
+        }
+        return userService.deleteUserService(user);
     }
 }
