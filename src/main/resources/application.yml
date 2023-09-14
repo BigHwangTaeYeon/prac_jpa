@@ -14,6 +14,13 @@ spring:
     properties:
       hibernate:
         "[format_sql]": true # 쿼리 출력시 포맷 정렬되도록 설정
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true #JSP수정시 서버 재시작없이 바로 적용될 수 있게 설정
 
 # logging.level:
 #   org.hibernate.SQL: debug
