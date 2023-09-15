@@ -1,6 +1,7 @@
 package com.prac.jpa.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,12 +34,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/updateUsers")
-    public List<Users> updateUsers( @RequestParam(required = false, defaultValue = "") String name ){
-        if(userRepository.findById(name).isEmpty()) { // 값 존재여부 확인
-            return "입력한 " + name + "이 존재하지 않습니다";
+    public String updateUsers( @RequestParam(required = false, defaultValue = "") long id){
+        String name;
+        if(userRepository.findById(id).isEmpty()) { // 값 존재여부 확인
+            return "입력한 " + id + "이 존재하지 않습니다";
         } else {
-            userRepository.save(CrudEntity.builder().name(name).build());
-            return name + "의 나이를 " + age + "로 변경 완료";
+            Optional<Users> getName = userRepository.findById(id);
+            name = getName.get().getUsername();
+            userRepository.save(Users.builder().username(name).ID(id).build());
+            return name + "의 이름을 " + name + "로 변경 완료";
         }
         return userService.updateUsersService( name );
     }
