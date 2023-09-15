@@ -1,4 +1,5 @@
 # 230912 오류
+
 1.
     .vscode > launch.json
     파일이 없었으며, main method를 찾는다는 오류가 생김
@@ -15,3 +16,14 @@
         id 'org.springframework.boot' version '2.7.4'
         id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     }
+
+# 230915 정리
+
+@Builder
+public Users(long ID, String username){
+    this.ID = ID;
+    this.username = username;
+}
+위와같이 빌더패턴을 사용하면 빌더객체를 계속 생성하기에 원하는 값을 가져오기 위하여 편리하게 사용할 수 있다.
+
+@Entity //@Entity가 붙은 클래스는 JPA가 관리하는 객체
