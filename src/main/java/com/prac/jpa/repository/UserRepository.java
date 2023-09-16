@@ -11,10 +11,12 @@ import com.prac.jpa.entity.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     
-    List<Users> findFirst2ByUsernameLikeOrderByIDDesc(String name);
+    List<Users> findFirst2ByUsernameLikeOrderByIdDesc(String name);
 
     Optional<Users> findAllById(Long id);
     
     List<Users> findAll();
+
+    //void deleteAllByIdInBatch(Long id);
 
 }
