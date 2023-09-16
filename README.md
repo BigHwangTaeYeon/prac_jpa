@@ -27,3 +27,28 @@ public Users(long ID, String username){
 위와같이 빌더패턴을 사용하면 빌더객체를 계속 생성하기에 원하는 값을 가져오기 위하여 편리하게 사용할 수 있다.
 
 @Entity //@Entity가 붙은 클래스는 JPA가 관리하는 객체
+
+# 230916 
+'org.springframework.boot' version '2.7.15'
+boot 버젼 변경
+
+the type java.lang.object cannot be resolved 오류
+jre를 못찾아서 그렇다.
+vscode 사용에 익숙하지 못해 사용법을 몰랐는데,
+settings.json에 경로를 잡아주면 된다.
+settings.json은 C:\Users\user\AppData\Roaming\Code\User 안에 있다.
+source control에서 필요하냐고 묻길래 따로 만들어주었다.
+중요한건 이걸 깃에 올리는 것이 아니라, 
+각 개인 컴퓨터 환경에 저장이 되기에 개발환경에 대해 정보가 있다면 그리 맞추면 된다는 것이다.
+{
+    "workbench.colorTheme": "Default Dark+",
+    "rsp-ui.enableStartServerOnActivation": [
+        {
+            ~
+        }
+    ],
+    "git.autofetch": true,
+    "boot-java.rewrite.reconcile": true,
+    "java.jdt.ls.java.home": "C:/Program Files/Java/jdk-18.0.2.1"
+}
+"java.jdt.ls.java.home": "C:/Program Files/Java/jdk-18.0.2.1" 이런식으로 잡아주었다.
